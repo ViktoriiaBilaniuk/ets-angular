@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SignInComponent, AuthService } from './index';
+import { SignInComponent } from './index';
+import {AuthRoutingModule} from './auth-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AuthRoutingModule
   ],
   declarations: [
     SignInComponent
-  ],
-  providers: [
-    AuthService
   ]
 })
 export class AuthModule { }
