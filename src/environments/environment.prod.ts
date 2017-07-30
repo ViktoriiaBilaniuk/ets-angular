@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  host: '',
+  signIn: '/api/v1/auth'
 };

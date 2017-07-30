@@ -1,0 +1,31 @@
+<form class="form" [formGroup]="signInForm">
+  <div class="header header-primary text-center">
+    <h4>
+      <ng-content></ng-content>
+    </h4>
+  </div>
+  <p class="text-divider">Or Be Classical</p>
+  <div class="content">
+    <div class="input-group">
+										<span class="input-group-addon">
+											<i class="material-icons">email</i>
+										</span>
+      <ets-input [type]="'text'"
+                 [placeholder]="'Email'"
+                 [control]="signInForm.controls['email']"></ets-input>
+    </div>
+    <div class="input-group">
+										<span class="input-group-addon">
+											<i class="material-icons">lock_outline</i>
+										</span>
+      <ets-input [type]="'password'"
+                 [placeholder]="'Password'"
+                 [control]="signInForm.controls['password']"></ets-input>
+    </div>
+  </div>
+  <div class="footer text-center">
+    <a href="#" class="btn btn-simple btn-primary btn-lg" (click)="submit(signInForm)">
+      Sign in
+    </a>
+  </div>
+</form>
