@@ -10,8 +10,8 @@ import {
 @NgModule({
   imports: [
     CommonModule,
-    AuthRoutingModule,
-    SharedModule
+    SharedModule,
+    AuthRoutingModule
   ],
   declarations: [
     SignInComponent,

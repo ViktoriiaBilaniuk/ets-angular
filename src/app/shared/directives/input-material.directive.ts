@@ -1,32 +1,21 @@
 import {
-  Directive, ElementRef, Input, OnInit, Renderer2, TemplateRef,
-  ViewContainerRef
+  Directive, HostBinding, HostListener
 } from '@angular/core';
 
 @Directive({
   selector: '[etsInputMaterial]'
 })
-export class InputMaterialDirective implements OnInit {
+export class InputMaterialDirective {
 
-  constructor(
-    private renderer: Renderer2,
-    private hostElement: ElementRef
-  ) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.hostElement.nativeElement.addEventListener('focusin', (e) => {
-      e.preventDefault();
-      this.renderer.addClass(
-        this.hostElement.nativeElement.parentElement,
-        'is-focused'
-      );
-    });
+  @HostBinding('class.is-focused') focusedClass: boolean;
 
-    this.hostElement.nativeElement.addEventListener('focusout', () => {
-      this.renderer.removeClass(
-        this.hostElement.nativeElement.parentElement,
-        'is-focused'
-      );
-    })
+  @HostListener('focusin') onFocus() {
+    this.focusedClass = true;
+  }
+
+  @HostListener('focusout') onFocusOut() {
+    this.focusedClass = false;
   }
 }

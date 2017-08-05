@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'ets-sign-in-form',
@@ -9,11 +10,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class SignInFormComponent implements OnInit {
   public signInForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private store: Store<any>) {
   }
 
   ngOnInit() {
-    this.buildForm()
+    this.buildForm();
   }
 
   private buildForm() {
@@ -32,6 +33,7 @@ export class SignInFormComponent implements OnInit {
     if (form.valid) {
       console.log(form.value);
     }
+    return false;
   }
 
 }

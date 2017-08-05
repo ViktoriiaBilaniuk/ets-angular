@@ -1,15 +1,21 @@
-import {ModuleWithProviders} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
 
-const APP_ROUTE = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full'
+  },
   {
     path: 'auth',
-    loadChildren: 'app/auth/auth.module#AuthModule'
+    loadChildren: 'app/auth/auth.module#AuthModule',
   }
 ];
 
-
-
-export const AppRoutingModule: ModuleWithProviders = RouterModule
-  .forRoot(APP_ROUTE, {useHash: true});
+@NgModule({
+  // useHash supports github.io demo page, remove in your app
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
