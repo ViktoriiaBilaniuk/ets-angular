@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignInFormComponent } from './sign-in-form.component';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {InputComponent} from '../../../shared/components/input/input.component';
