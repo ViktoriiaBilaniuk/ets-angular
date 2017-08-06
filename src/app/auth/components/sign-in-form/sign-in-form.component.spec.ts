@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SignInFormComponent } from './sign-in-form.component';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {InputComponent} from "../../../shared/components/input/input.component";
 
 describe('SignInFormComponent', () => {
   let component: SignInFormComponent;
@@ -8,7 +12,16 @@ describe('SignInFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignInFormComponent ]
+      imports: [
+        ReactiveFormsModule,
+        FormsModule,
+        StoreModule.forRoot([]),
+        EffectsModule.forRoot([])
+      ],
+      declarations: [ SignInFormComponent, InputComponent ],
+      providers: [
+        FormBuilder
+      ]
     })
     .compileComponents();
   }));
@@ -22,4 +35,9 @@ describe('SignInFormComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  // it('form invalid when empty', () => {
+  //   console.log(component.signInForm.valid);
+  //   expect(component.signInForm.valid).toBeFalsy();
+  // });
 });

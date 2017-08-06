@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SignInComponent } from './sign-in.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SignInFormComponent} from '../../components/sign-in-form/sign-in-form.component';
+import {InputComponent} from '../../../shared/components/input/input.component';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -8,7 +12,15 @@ describe('SignInComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignInComponent ]
+      imports: [
+        ReactiveFormsModule,
+        StoreModule.forRoot([]),
+        EffectsModule.forRoot([])
+      ],
+      declarations: [
+        SignInComponent,
+        SignInFormComponent,
+        InputComponent ]
     })
     .compileComponents();
   }));
