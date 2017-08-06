@@ -4,7 +4,8 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {InputComponent} from "../../../shared/components/input/input.component";
+import {InputComponent} from '../../../shared/components/input/input.component';
+import {LoginUser} from '../../../models/LoginUser.model';
 
 describe('SignInFormComponent', () => {
   let component: SignInFormComponent;
@@ -36,8 +37,43 @@ describe('SignInFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('form invalid when empty', () => {
-  //   console.log(component.signInForm.valid);
-  //   expect(component.signInForm.valid).toBeFalsy();
-  // });
+  it('form invalid when empty', () => {
+    expect(component.signInForm.valid).toBeFalsy();
+  });
+
+  it('email field validity', () => {
+    let email = component.signInForm.controls['email'];
+    expect(email.valid).toBeFalsy();
+
+    email.setValue('test@test.com');
+    expect(email.valid).toBeTruthy();
+  });
+
+  it('password field validity', () => {
+    let password = component.signInForm.controls['password'];
+    expect(password.valid).toBeFalsy();
+
+    password.setValue('1');
+    expect(password.valid).toBeTruthy();
+  });
+
+  it('submitting a form emits a user', () => {
+    expect(component.signInForm.valid).toBeFalsy();
+    component.signInForm.controls['email'].setValue('test@test.com');
+    component.signInForm.controls['password'].setValue('123456789');
+    expect(component.signInForm.valid).toBeTruthy();
+
+    let user: LoginUser;
+    // Subscribe to the Observable and store the user in a local variable.
+    component.loggedIn.subscribe((value) => user = value);
+
+    // Trigger the login function
+    component.submit(component.signInForm);
+
+    // Now we can check to make sure the emitted value is correct
+    expect(user.email).toBe('test@test.com');
+    expect(user.password).toBe('123456789');
+  });
+
+
 });
