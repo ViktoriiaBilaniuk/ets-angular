@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable, InjectionToken, Optional} from '@angular/core';
 import {Actions, Effect, toPayload} from '@ngrx/effects';
 import {Observable} from 'rxjs/Observable';
 import {Action} from '@ngrx/store';
@@ -13,11 +13,11 @@ import {User} from '../../models/User.model';
 import 'rxjs/add/operator/do';
 import {JwtService} from '../services/jwt.service';
 
-
 @Injectable()
 export class AuthEffects {
 
-  @Effect() login$: Observable<Action> = this.actions$.ofType(Auth.LOGIN)
+  @Effect()
+  login$: Observable<Action> = this.actions$.ofType(Auth.LOGIN)
     .map(toPayload)
     .mergeMap(payload =>
       this.http.post(environment.signIn, payload)
@@ -25,14 +25,6 @@ export class AuthEffects {
         .map((user: User) => new Auth.LoginSuccess(user))
         .catch(error => of(new Auth.LoginFailure(error)))
     );
-
-  // @Effect() getUser$: Observable<Action> = this.actions$.ofType(AuthAction.GET_USER)
-  //   .map(toPayload)
-  //   .mergeMap(payload =>
-  //     this.http.get(environment.userInfo)
-  //       .map(data => ({ type: AuthAction.LOGIN_SUCCESS, payload: data }))
-  //       .catch(() => of({ type: AuthAction.LOGIN_FAILED }))
-  //   );
 
   constructor(
     private actions$: Actions,
