@@ -5,10 +5,11 @@ import {AppComponent} from './app.component';
 import {SharedModule} from './shared/shared.module';
 import {JwtService} from './shared';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import {environment} from '../environments/environment';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -19,11 +20,12 @@ import {EffectsModule} from '@ngrx/effects';
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    HttpModule,
+    HttpClientModule,
     SharedModule,
     AppRoutingModule,
     StoreModule.forRoot([]),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : []
   ],
   providers: [
     JwtService

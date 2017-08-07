@@ -24,7 +24,10 @@
     "@ngrx/effects": "^4.0.0",
     "@ngrx/router-store": "^4.0.0",
     "@ngrx/store": "^4.0.0",
+    "@ngrx/store-devtools": "^4.0.0",
     "core-js": "^2.4.1",
+    "ramda": "^0.24.1",
+    "ramda-ts": "^0.1.2",
     "rxjs": "^5.4.2",
     "zone.js": "0.8.12"
   },

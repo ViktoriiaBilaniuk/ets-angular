@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   host: '',
-  signIn: '/api/v1/auth'
+  signIn: '/api/v1/auth',
+  userInfo: '/api/v1/auth/me'
 };

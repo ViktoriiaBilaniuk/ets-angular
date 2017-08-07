@@ -4,7 +4,7 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {InputComponent} from '../../../shared/components/input/input.component';
-import {LoginUser} from '../../../models/LoginUser.model';
+import {Authenticate} from '../../../models/Authenticate.model';
 
 describe('SignInFormComponent', () => {
   let component: SignInFormComponent;
@@ -62,7 +62,7 @@ describe('SignInFormComponent', () => {
     component.signInForm.controls['password'].setValue('123456789');
     expect(component.signInForm.valid).toBeTruthy();
 
-    let user: LoginUser;
+    let user: Authenticate;
     // Subscribe to the Observable and store the user in a local variable.
     component.loggedIn.subscribe((value) => user = value);
 

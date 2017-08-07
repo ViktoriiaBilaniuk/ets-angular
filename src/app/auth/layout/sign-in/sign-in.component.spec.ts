@@ -20,7 +20,8 @@ describe('SignInComponent', () => {
       declarations: [
         SignInComponent,
         SignInFormComponent,
-        InputComponent ]
+        InputComponent
+      ]
     })
     .compileComponents();
   }));

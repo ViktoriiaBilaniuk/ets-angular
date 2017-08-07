@@ -1,11 +1,12 @@
 import {TestBed, async, tick, fakeAsync} from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {RouterTestingModule} from '@angular/router/testing';
 import {AppRoutingModule} from './app-routing.module';
 import {Router} from '@angular/router';
 import { Location } from '@angular/common';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import {HttpClient} from '@angular/common/http';
+import {HttpHandler} from '@angular/common/http';
 
 describe('AppComponent', () => {
   let location: Location;
@@ -22,6 +23,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [
+        HttpClient,
+        HttpHandler
+      ]
     }).compileComponents();
 
     router = TestBed.get(Router);

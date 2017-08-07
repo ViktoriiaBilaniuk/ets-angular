@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {LoginUser} from '../../../models';
+import {Authenticate} from '../../../models';
 
 @Component({
   selector: 'ets-sign-in-form',
@@ -10,7 +10,7 @@ import {LoginUser} from '../../../models';
 })
 export class SignInFormComponent implements OnInit {
   public signInForm: FormGroup;
-  @Output() loggedIn: EventEmitter<LoginUser> = new EventEmitter<LoginUser>();
+  @Output() loggedIn: EventEmitter<Authenticate> = new EventEmitter<Authenticate>();
 
   constructor(private fb: FormBuilder,
               private store: Store<any>) {
@@ -22,11 +22,11 @@ export class SignInFormComponent implements OnInit {
 
   private buildForm() {
     this.signInForm = this.fb.group({
-      email: ['', [
+      email: ['owner@mail.com', [
         Validators.required,
         Validators.email
       ]],
-      password: ['', [
+      password: ['password', [
         Validators.required
       ]]
     });
@@ -34,7 +34,7 @@ export class SignInFormComponent implements OnInit {
 
   public submit(form: FormGroup) {
     if (form.valid) {
-      this.loggedIn.emit(new LoginUser(
+      this.loggedIn.emit(new Authenticate(
         form.value.email,
         form.value.password
       ));
