@@ -25,11 +25,19 @@ export function reducer(state: State = initialState, action: Action) {
         user: action.payload,
       };
 
-    case Auth.LOGIN_FAILURE:
-      console.log(action);
-      return state;
+    case Auth.LOGIN_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+        pending: false,
+      };
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 }
+
+export const getLoggedIn = (state: State) => state.loggedIn;
+export const getUser = (state: State) => state.user;

@@ -12,6 +12,7 @@ import {environment} from '../../../environments/environment';
 import {User} from '../../models/User.model';
 import 'rxjs/add/operator/do';
 import {JwtService} from '../services/jwt.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
@@ -26,9 +27,22 @@ export class AuthEffects {
         .catch(error => of(new Auth.LoginFailure(error)))
     );
 
+  @Effect({ dispatch: false })
+  loginSuccess$ = this.actions$
+    .ofType(Auth.LOGIN_SUCCESS)
+    .do(() => this.router.navigate(['/home']));
+
+  @Effect({ dispatch: false })
+  loginRedirect$ = this.actions$
+    .ofType(Auth.LOGIN_REDIRECT, Auth.LOGOUT)
+    .do(authed => {
+      this.router.navigate(['/auth']);
+    });
+
   constructor(
     private actions$: Actions,
     private http: HttpClient,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private router: Router
   ) {}
 }
