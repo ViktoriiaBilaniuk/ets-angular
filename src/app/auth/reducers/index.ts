@@ -6,9 +6,7 @@ export interface AuthState {
   status: fromAuth.State;
 }
 
-export const reducers = {
-  auth: fromAuth.reducer
-};
+export const reducers = fromAuth.reducer;
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
@@ -17,8 +15,20 @@ export const selectAuthStatusState = createSelector(
   (state: AuthState) => state.status
 );
 
+export const selectLoginPageState = createSelector(
+  selectAuthState,
+  (state: AuthState) => state.status
+);
+
 export const getLoggedIn = createSelector(
   selectAuthStatusState,
   fromAuth.getLoggedIn
 );
-export const getUser = createSelector(selectAuthStatusState, fromAuth.getUser);
+
+
+export const getUserFeature = (state: any) => state.auth;
+
+export const getUser = createSelector(
+  getUserFeature,
+  (state: any) => state.user
+);
