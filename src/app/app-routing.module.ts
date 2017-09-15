@@ -10,6 +10,14 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: 'app/auth/auth.module#AuthModule',
+  },
+  {
+    path: 'calendar',
+    loadChildren: 'app/auth/auth.module#AuthModule',
+  },
+  {
+    path: 'map',
+    loadChildren: 'app/map-dev/map-dev.module#MapDevModule',
   }
 ];
 

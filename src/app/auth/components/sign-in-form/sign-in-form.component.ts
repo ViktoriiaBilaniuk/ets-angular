@@ -22,11 +22,11 @@ export class SignInFormComponent implements OnInit {
 
   private buildForm() {
     this.signInForm = this.fb.group({
-      email: ['', [
+      email: ['owner@mail.com', [
         Validators.required,
         Validators.email
       ]],
-      password: ['', [
+      password: ['password', [
         Validators.required
       ]]
     });

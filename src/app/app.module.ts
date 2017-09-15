@@ -10,6 +10,7 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {environment} from '../environments/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {CalendarModule} from "./calendar/calendar.module";
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     HttpClientModule,
     SharedModule,
     AppRoutingModule,
+    CalendarModule,
     StoreModule.forRoot([]),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : []
